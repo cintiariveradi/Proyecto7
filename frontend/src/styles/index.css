@@ -20,7 +20,9 @@ body {
   color: var(--intense-text);
   font-family: var(--body-font);
   line-height: var(--line-default-height);
+  overflow-x: hidden;
 }
+
 
 /* Navbar */
 nav {
@@ -29,11 +31,20 @@ nav {
   align-items: center;
   position: fixed;
   top: 0;
-  width: 98vw;
+  width: 100%;
+  height: 60px;              
   backdrop-filter: blur(20px);
   z-index: 30;
-  padding: 0.8rem 2rem;
+  padding: 0 2rem;          
 }
+nav a {
+  cursor: pointer;
+}
+
+nav a img {
+  cursor: pointer;
+}
+
 
 nav img { border-radius: 50%; }
 
@@ -50,7 +61,7 @@ nav img { border-radius: 50%; }
 .navbar-item a {
   text-decoration: none;
   color: inherit;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -95,9 +106,16 @@ header {
   margin-top: 1rem; }
 
 /* main/ historia*/
-main { 
-  width: 80%; 
-  margin: auto; }
+main {
+  width: 100%;
+}
+
+/* contenedor para secciones (mantiene el diseño centrado) */
+.page-content {
+  width: 80%;
+  margin: auto;
+}
+
 
 .presentacion .historia {
   display: flex;
@@ -390,6 +408,21 @@ footer {
   font-size:.85rem; 
   border-top:1px solid rgba(0,0,0,0.1); 
   padding-top:1rem; 
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.product-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 
