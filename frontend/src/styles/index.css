@@ -46,7 +46,13 @@ nav a img {
 }
 
 
-nav img { border-radius: 50%; }
+nav img {
+  border-radius: 50%;
+  display: block;
+  transform: translateY(4px);
+}
+
+
 
 
 
@@ -73,15 +79,30 @@ nav img { border-radius: 50%; }
   color: var(--secondary-color-500);
   text-shadow: 0 0 10px #fff;
 }
-
-/* header/hero */
-header {
-  height: 135vh; 
-  background-image: url('../Img/herofinal.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+.navbar-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
+
+.navbar-action {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .15s, color .15s, text-shadow .15s;
+}
+
+.navbar-action:hover {
+  transform: scale(1.06);
+  color: var(--secondary-color-500);
+  text-shadow: 0 0 10px #fff;
+}
+
+
 
 .hero-text {
   text-align: center;
@@ -264,14 +285,15 @@ main {
 /* tarjetas */
 .cards { width: 100%; }
 .card {
-  width: 80%;
-  max-width: 1000px;
-  margin: 2rem auto;
+  width: 92%;
+  max-width: 1400px;
+  margin: 3rem auto;
   background: #fff;
-  border-radius: 40px;
-  padding: 2rem;
-  box-shadow: 0 0 15px var(--intense-text);
+  border-radius: 32px;
+  padding: 3rem;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
 }
+
 
 .titulo-paso { 
   display:flex; 

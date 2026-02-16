@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import banner from "../assets/herofinal.png";
 import rutinaBanner from "../assets/productoHistoria.png";
 import step1Img from "../assets/Limpiador.png";
@@ -5,93 +7,144 @@ import step2Img from "../assets/Tonico.png";
 import step3Img from "../assets/Serum.png";
 import step4Img from "../assets/Crema.png";
 import step5Img from "../assets/Bloqueador.png";
+import instagramIcon from "../assets/instagram.svg";
+import tiktokIcon from "../assets/tiktok.svg";
+import whatsappIcon from "../assets/whatsapp.svg";
+
 
 
 export default function Home() {
+  const location = useLocation();
+
+useEffect(() => {
+  if (location.hash) {
+    const id = location.hash.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}, [location]);
+
   return (
     <main style={{ marginTop: "90px" }}>
       <header
-    
   id="home"
   style={{
-    /* MÁS alto para que cover no recorte tanto */
-    minHeight: "calc(100vh - 60px)",   
-    height: "clamp(620px, 92vh, 900px)",
-
-    backgroundImage: `url(${banner})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center 85%",
-    backgroundColor: "var(--primary-color-900)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    textAlign: "center",
-    paddingTop: "140px",
+    position: "relative",
     width: "100%",
   }}
 >
-
-        <h1>5 STEPS ONLY</h1>
-        <p>Nutrición para tu piel en 5 pasos</p>
-      </header>
-
-{/* nuestra esencia*/}
-
-   <section id="esencia" style={{ margin: "4rem auto", width: "80%" }}>
-  <h2>Nuestra esencia</h2>
-
-  <p style={{ marginTop: "1.5rem", fontSize: "1.1rem", lineHeight: "1.7" }}>
-    Somos una marca de skincare enfocada en la humectación para todo tipo de pieles.
-    Creamos una rutina basada en <strong>5 pasos</strong> para que tengas una piel saludable,
-    hidratada y luminosa.
-  </p>
-
-  <p style={{ marginTop: "1rem", fontSize: "1.1rem", lineHeight: "1.7" }}>
-    En <strong>5 Steps Only</strong> creemos en rituales de cuidado simples pero efectivos.
-    Cada producto está diseñado para nutrir tu piel y tu momento, con fórmulas limpias y una
-    estética que inspira calma.
-  </p>
-
-  <ol className="lista-diamantes">
-  <li>Limpiar</li>
-  <li>Tonificar</li>
-  <li>Hidratación ligera</li>
-  <li>Hidratación profunda</li>
-  <li>Protección solar</li>
-</ol>
-
-  <p style={{ marginTop: "1rem", fontSize: "1.1rem", lineHeight: "1.7" }}>
-    Nos preocupamos de que nuestros productos sean amigables con tu piel y con el planeta:
-    envases reciclables, ingredientes seleccionados y fórmulas libres de crueldad animal.
-  </p>
-
-  <p style={{ marginTop: "1rem", fontSize: "1.1rem", lineHeight: "1.7" }}>
-    Rutinas simples, efectivas y conscientes, sin exceso de productos ni pasos innecesarios.
-  </p>
-</section>
-
-<section style={{ width: "100%", marginTop: "4rem" }}>
   <img
-    src={rutinaBanner}
-    alt="Rutina skincare 5 Steps Only"
+    src={banner}
+    alt="Banner 5 Steps Only"
     style={{
       width: "100%",
       height: "auto",
       display: "block",
-      objectFit: "contain",
     }}
   />
+
+  <div
+    className="hero-text"
+    style={{
+      position: "absolute",
+      top: "7%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      textAlign: "center",
+      width: "100%",
+    }}
+  >
+    <h1>5 STEPS ONLY</h1>
+    <p>Nutrición para tu piel en 5 pasos</p>
+  </div>
+</header>
+
+
+{/* nuestra esencia  */  }
+
+<section id="esencia" style={{ marginTop: "4rem" }}>
+  <div
+    style={{
+      width: "80%",
+      margin: "0 auto",
+      background: "#fff",
+      borderRadius: "24px",
+      padding: "2.5rem",
+      boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
+    }}
+  >
+    <h2 style={{ fontSize: "2.6rem", color: "var(--secondary-color-500)",  textAlign: "center" }}>
+      Nuestra Esencia
+    </h2>
+
+    <div
+      style={{
+        marginTop: "1.5rem",
+        display: "grid",
+        gridTemplateColumns: "1.2fr 0.8fr",
+        gap: "2.5rem",
+        alignItems: "start",
+      }}
+    >
+      {/* Columna izquierda */}
+      <div style={{ lineHeight: "1.8", fontSize: "1.1rem", color: "var(--intense-text)" }}>
+        <p style={{ marginBottom: "1rem" }}>
+          Somos una marca de skincare enfocada en la humectación para todo tipo de pieles.
+          Creamos una rutina basada en <strong>5 pasos</strong> para que tengas una piel
+          saludable, hidratada y luminosa.
+        </p>
+
+        <p style={{ marginBottom: "1rem" }}>
+          En <strong>5 Steps Only</strong> creemos en rituales simples pero efectivos.
+          Cada producto está diseñado para nutrir tu piel y tu momento, con fórmulas limpias
+          y una estética que inspira calma.
+        </p>
+
+        <p style={{ marginBottom: 0 }}>
+          Nos preocupamos de que nuestros productos sean amigables con tu piel y con el planeta:
+          envases reciclables, ingredientes seleccionados y fórmulas libres de crueldad animal.
+        </p>
+        <p style={{ marginBottom: 0 }}>
+          Menos decisiones, más constancia. Eso es belleza simple.
+        </p>
+      </div>
+
+      {/* Columna derecha */}
+      <div
+        style={{
+          background: "var(--primary-color-900)",
+          borderRadius: "18px",
+          padding: "1.5rem",
+        }}
+      >
+        <h3 style={{ marginBottom: "1rem", color: "var(--secondary-color-500)" }}>
+          Rutina en 5 pasos
+        </h3>
+
+        <ol className="lista-diamantes" style={{ margin: 0 }}>
+          <li>Limpiar</li>
+          <li>Tonificar</li>
+          <li>Hidratación ligera</li>
+          <li>Hidratación profunda</li>
+          <li>Protección solar</li>
+        </ol>
+
+        
+      </div>
+    </div>
+  </div>
 </section>
 
-{/* imagen tipo banner*/}
+
 
 {/* rutina*/}
 
 <section id="rutina" className="cards" style={{ marginTop: "4rem" }}>
   <div style={{ width: "80%", margin: "0 auto", textAlign: "center" }}>
-    <h2>Rutina</h2>
+    <h2 style={{ fontSize: "2.8rem", color: "var(--secondary-color-500)" }}>
+      Rutina</h2>
     <p style={{ marginTop: "1rem", fontSize: "1.2rem", fontWeight: "500" }}>
       Comienza la rutina que cambiará tu piel a su mejor versión
     </p>
@@ -184,17 +237,31 @@ export default function Home() {
   </article>
 </section>
 
+<section style={{ width: "100%", marginTop: "4rem" }}>
+  <img
+    src={rutinaBanner}
+    alt="Rutina skincare 5 Steps Only"
+    style={{
+      width: "100%",
+      height: "auto",
+      display: "block",
+      objectFit: "contain",
+    }}
+  />
+</section>
+
 
 {/* comentarios*/}
 <section id="comentarios" className="cards" style={{ marginTop: "4rem" }}>
  <div
   style={{
     width: "80%",
-    margin: "0 auto 3rem",
+    margin: "0 auto 7rem",
     textAlign: "center",
   }}
 >
-  <h2>Comentarios de nuestros clientes</h2>
+  <h2 style={{ fontSize: "2.8rem", color: "var(--secondary-color-500)" }}>
+    Comentarios de nuestros clientes</h2>
 </div>
 </section>
 
@@ -233,10 +300,12 @@ export default function Home() {
   </div>
 </div>
 
+{/* contacto*/}
 
-      <section id="contacto" style={{ marginTop: "4rem" }}>
+      <section id="contacto" style={{ marginTop: "8rem" }}>
   <div style={{ width: "80%", margin: "0 auto", textAlign: "center" }}>
-    <h2>Contacto</h2>
+    <h2 style={{ fontSize: "2.8rem", color: "var(--secondary-color-500)" }}>
+      Contacto</h2>
     <p style={{ marginTop: "1rem", fontSize: "1.1rem", lineHeight: "1.7" }}>
       ¿Tienes dudas sobre tu rutina o quieres recomendaciones según tu tipo de piel?
       Escríbenos y te respondemos.
@@ -298,9 +367,144 @@ export default function Home() {
 </section>
 
 
-      <footer>
-        <p>Footer</p>
-      </footer>
+{/* footer */ }
+
+<footer
+  id="footer"
+  style={{
+  marginTop: "6rem",
+  background: "linear-gradient(180deg, var(--primary-color-400), #ffd7dc)",
+  padding: "4rem 2rem 2rem",
+  color: "var(--intense-text)",
+  borderTop: "1px solid rgba(159, 78, 78, 0.18)",
+  boxShadow: "0 -12px 30px rgba(0,0,0,0.06)",
+}}
+
+>
+  {/* GRID PRINCIPAL */}
+  <div
+    style={{
+      maxWidth: "1800px",
+      margin: "0 auto",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 300px))",
+      gap: "9rem",
+      alignItems: "start",
+    }}
+  >
+    {/* Col 1 */}
+    <div>
+      <h3 style={{ color: "var(--secondary-color-500)", marginBottom: "1rem" }}>
+        5 Steps Only
+      </h3>
+      <p style={{ lineHeight: "1.7" }}>
+        Skincare simple y efectivo en 5 pasos. Fórmulas limpias, estética calma y
+        resultados reales.
+      </p>
+    </div>
+
+    {/* Col 2 */}
+    <div>
+      <h3 style={{ color: "var(--secondary-color-500)", marginBottom: "1rem" }}>
+        Navegación
+      </h3>
+      <ul style={{ listStyle: "none", padding: 0, lineHeight: "2" }}>
+        <li>
+          <a href="#esencia" style={{ color: "inherit", textDecoration: "none" }}>
+            Nuestra esencia
+          </a>
+        </li>
+        <li>
+          <a href="#rutina" style={{ color: "inherit", textDecoration: "none" }}>
+            Rutina
+          </a>
+        </li>
+        <li>
+          <a href="#comentarios" style={{ color: "inherit", textDecoration: "none" }}>
+            Opiniones
+          </a>
+        </li>
+        <li>
+          <a href="#contacto" style={{ color: "inherit", textDecoration: "none" }}>
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {/* Col 3 */}
+    <div>
+      <h3 style={{ color: "var(--secondary-color-500)", marginBottom: "1rem" }}>
+        Newsletter
+      </h3>
+      <p style={{ lineHeight: "1.7" }}>Suscríbete para recibir tips y promos.</p>
+
+      <form style={{ display: "flex", gap: ".6rem", marginTop: "1rem" }}>
+        <input
+          type="email"
+          placeholder="tuemail@correo.com"
+          style={{
+            flex: 1,
+            padding: ".7rem",
+            borderRadius: "10px",
+          }}
+        />
+        <button
+          type="button"
+          style={{
+            padding: ".7rem 1rem",
+            borderRadius: "10px",
+            background: "var(--secondary-color-500)",
+            color: "white",
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          OK
+        </button>
+      </form>
+    </div>
+
+    {/* Col 4 */}
+    <div>
+      <h3 style={{ color: "var(--secondary-color-500)", marginBottom: "1rem" }}>
+        Síguenos
+      </h3>
+
+      <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+        <img
+          src={instagramIcon}
+          alt="Instagram"
+          style={{ width: "28px", cursor: "pointer" }}
+        />
+        <img
+          src={tiktokIcon}
+          alt="TikTok"
+          style={{ width: "28px", cursor: "pointer" }}
+        />
+        <img
+          src={whatsappIcon}
+          alt="WhatsApp"
+          style={{ width: "28px", cursor: "pointer" }}
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* DERECHOS RESERVADOS */}
+  <div
+    style={{
+      marginTop: "2rem",
+      paddingTop: "1rem",
+      borderTop: "1px solid rgba(0,0,0,0.08)",
+      textAlign: "center",
+      fontSize: ".9rem",
+    }}
+  >
+    © {new Date().getFullYear()} 5 Steps Only. Todos los derechos reservados.
+  </div>
+</footer>
     </main>
   );
 }
+
