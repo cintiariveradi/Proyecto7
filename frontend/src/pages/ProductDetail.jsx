@@ -1,41 +1,5 @@
 import { useParams } from "react-router-dom";
-const products = [
-  {
-    id: "1",
-    name: "Paso 1 – Limpiador",
-    price: 12990,
-    ingredients: "Ingredientes del limpiador .",
-    usage: "Modo de uso del limpiador.",
-  },
-  {
-    id: "2",
-    name: "Paso 2 – Tónico",
-    price: 10990,
-    ingredients: "Ingredientes del tónico.",
-    usage: "Modo de uso del tónico.",
-  },
-  {
-    id: "3",
-    name: "Paso 3 – Sérum",
-    price: 15990,
-    ingredients: "Ingredientes del sérum (placeholder).",
-    usage: "Modo de uso del sérum (placeholder).",
-  },
-  {
-    id: "4",
-    name: "Paso 4 – Hidratante",
-    price: 14990,
-    ingredients: "Ingredientes del hidratante.",
-    usage: "Modo de uso del hidratante (placeholder).",
-  },
-  {
-    id: "5",
-    name: "Paso 5 – Protector solar",
-    price: 17990,
-    ingredients: "Ingredientes del protector solar.",
-    usage: "Modo de uso del protector solar (placeholder).",
-  },
-];
+import { products } from "../data/products";
 
 
 export default function ProductDetail() {
@@ -49,12 +13,22 @@ export default function ProductDetail() {
   );
 }
 
-
-  
-
   return (
     <main style={{ marginTop: "90px" }}>
       <section style={{ width: "80%", margin: "2rem auto" }}>
+        <img
+  src={product.image}
+  alt={product.name}
+  style={{
+    width: "100%",
+    maxWidth: "520px",
+    height: "auto",
+    display: "block",
+    margin: "0 auto 1.5rem",
+    objectFit: "contain",
+  }}
+/>
+
        <h1>{product.name}</h1>
 
 

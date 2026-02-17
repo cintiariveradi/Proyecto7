@@ -1,12 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { products } from "../data/products";
 
-const products = [
-  { id: "1", name: "Paso 1 – Limpiador", price: 12990 },
-  { id: "2", name: "Paso 2 – Tónico", price: 10990 },
-  { id: "3", name: "Paso 3 – Sérum", price: 15990 },
-  { id: "4", name: "Paso 4 – Hidratante", price: 14990 },
-  { id: "5", name: "Paso 5 – Protector solar", price: 17990 },
-];
+
 
 export default function Products() {
   const navigate = useNavigate();
@@ -23,6 +18,17 @@ export default function Products() {
             onClick={() => navigate(`/products/${p.id}`)}
             style={{ cursor: "pointer" }}
           >
+                        <img
+              src={p.image}
+              alt={p.name}
+              style={{
+                width: "100%",
+                height: "360px",
+                objectFit: "contain",
+                display: "block",
+                marginBottom: "1rem",
+              }}
+            />
             <h2 style={{ fontSize: "1.1rem" }}>{p.name}</h2>
             <p style={{ marginTop: ".5rem", fontWeight: 700 }}>
               ${p.price.toLocaleString("es-CL")}
