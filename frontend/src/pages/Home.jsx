@@ -10,6 +10,8 @@ import step5Img from "../assets/Bloqueador.png";
 import instagramIcon from "../assets/instagram.svg";
 import tiktokIcon from "../assets/tiktok.svg";
 import whatsappIcon from "../assets/whatsapp.svg";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -157,7 +159,15 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <img className="card-img" src={step1Img} alt="Limpiador en espuma" />
+      <Link to="/products/1">
+  <img
+    className="card-img"
+    src={step1Img}
+    alt="Limpiador en espuma"
+    style={{ cursor: "pointer" }}
+  />
+</Link>
+
       <p>
         <strong>Limpiador en espuma</strong><br />
         Foam Cleanser es un limpiador en espuma a base de pantenol y ácido glicólico
@@ -173,8 +183,15 @@ useEffect(() => {
       <h2 className="paso-diamond">Segundo paso: Tonificar</h2>
     </div>
 
-    <div className="card-body">
-      <img className="card-img" src={step2Img} alt="Tónico rosado" />
+<div className="card-body">
+      <Link to="/products/2">
+  <img
+    className="card-img"
+    src={step2Img}
+    alt="Tónico rosado"
+    style={{ cursor: "pointer" }}
+  />
+</Link>
       <p>
         <strong>Tónico</strong><br />
         Toner es un tónico formulado a partir de centella asiática y sal del Himalaya.
@@ -191,7 +208,14 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <img className="card-img" src={step3Img} alt="Glow Serum" />
+      <Link to="/products/3">
+  <img
+    className="card-img"
+    src={step3Img}
+    alt="Glow Serum"
+    style={{ cursor: "pointer" }}
+  />
+</Link>
       <p>
         <strong>Sérum</strong><br />
         Glow Serum es un serum que aporta luminosidad e hidratación. Su formulación
@@ -207,8 +231,15 @@ useEffect(() => {
       <h2 className="paso-diamond">Cuarto paso: Hidratar y sellar</h2>
     </div>
 
-    <div className="card-body">
-      <img className="card-img" src={step4Img} alt="Moisturizer" />
+  <div className="card-body">
+      <Link to="/products/4">
+  <img
+    className="card-img"
+    src={step4Img}
+    alt="Moisturizer"
+    style={{ cursor: "pointer" }}
+  />
+</Link>
       <p>
         <strong>Crema hidratante</strong><br />
         Moisturizer es una crema nutritiva a base de minerales volcánicos y niacinamida.
@@ -226,7 +257,14 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <img className="card-img" src={step5Img} alt="Protector solar" />
+      <Link to="/products/5">
+  <img
+    className="card-img"
+    src={step5Img}
+    alt="Protector solar"
+    style={{ cursor: "pointer" }}
+  />
+</Link>
       <p>
         <strong>Protector solar</strong><br />
         Sunscreen 50+ Este fluido hidratante SPF50+ de absorción inmediata aporta lo que

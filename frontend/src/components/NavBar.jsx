@@ -28,8 +28,9 @@ export default function Navbar() {
       {/* Acciones derecha */}
       <div className="navbar-actions">
         <Link className="navbar-action" to="/registro">Registro</Link>
-        <span className="navbar-action">Login</span>
-        <span className="navbar-action">Carrito</span>
+        <Link className="navbar-action" to="/login">Login</Link>
+        <Link className="navbar-action" to="/carrito">Carrito</Link>
+
       </div>
     </nav>
   );

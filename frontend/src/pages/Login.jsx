@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-export default function Registro() {
+export default function Login() {
   const [form, setForm] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -13,7 +12,7 @@ export default function Registro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Datos de registro:", form);
+    console.log("Datos de login:", form);
   };
 
   return (
@@ -22,7 +21,6 @@ export default function Registro() {
         style={{
           width: "90%",
           maxWidth: "650px",
-
           margin: "3rem auto",
           background: "#fff",
           padding: "3.5rem",
@@ -30,7 +28,7 @@ export default function Registro() {
           boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
         }}
       >
-        <h1 style={{ marginBottom: "1.5rem" }}>Crear cuenta</h1>
+        <h1 style={{ marginBottom: "1.5rem" }}>Iniciar sesión</h1>
 
         <form
           onSubmit={handleSubmit}
@@ -40,20 +38,6 @@ export default function Registro() {
             gap: "1.2rem",
           }}
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Nombre"
-            value={form.name}
-            onChange={handleChange}
-            required
-            style={{
-              padding: "0.8rem",
-              borderRadius: "12px",
-              border: "1px solid #ddd",
-            }}
-          />
-
           <input
             type="email"
             name="email"
@@ -94,7 +78,7 @@ export default function Registro() {
               cursor: "pointer",
             }}
           >
-            Registrarme
+            Entrar
           </button>
         </form>
       </div>

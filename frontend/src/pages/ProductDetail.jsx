@@ -1,10 +1,22 @@
 import { useParams } from "react-router-dom";
 import { products } from "../data/products";
+import { useCart } from "../context/CartContext";
+import { useState } from "react";
+;
+
+
 
 
 export default function ProductDetail() {
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
+  const { addToCart } = useCart();
+  const [added, setAdded] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+
+  
+
   if (!product) {
   return (
     <main style={{ marginTop: "90px", textAlign: "center" }}>
@@ -36,20 +48,47 @@ export default function ProductDetail() {
   ${product.price.toLocaleString("es-CL")}
 </p>
 
+<div style={{ margin: "1rem 0" }}>
+  <label style={{ fontWeight: "600" }}>Cantidad: </label>
+  <input
+    type="number"
+    min="1"
+    value={quantity}
+    onChange={(e) => setQuantity(Number(e.target.value))}
+    style={{
+      width: "60px",
+      marginLeft: "10px",
+      padding: "0.4rem",
+      borderRadius: "6px",
+      border: "1px solid #ccc",
+      textAlign: "center"
+    }}
+  />
+</div>
 
-        <button
-          style={{
-            padding: "0.6rem 1.2rem",
-            borderRadius: "8px",
-            border: "none",
-            background: "#fc8383",
-            color: "white",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          Agregar al carrito
-        </button>
+   <button
+  onClick={() => {
+  addToCart({ ...product, qty: quantity });
+
+  setAdded(true);
+}}
+
+
+  style={{
+    padding: "0.8rem 1.4rem",
+    borderRadius: "12px",
+    border: "none",
+    background: added ? "#9f4e4e" : "var(--secondary-color-500)",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+    transition: "all .2s ease",
+  }}
+>
+  {added ? "✓ Agregado" : "Agregar al carrito"}
+</button>
+
+
 
         <hr style={{ margin: "2rem 0" }} />
 
