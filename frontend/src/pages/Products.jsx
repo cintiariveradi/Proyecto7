@@ -1,10 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { products } from "../data/products";
+import { useEffect, useState } from "react";
+import { api } from "../api/apiClient";
+import { products as fallbackProducts } from "../data/products";
+
+
 
 
 
 export default function Products() {
   const navigate = useNavigate();
+const [items, setItems] = useState(fallbackProducts);
+
+useEffect(() => {
+  const load = async () => {
+    try {
+      const res = await api.get("/api/product/readall");
+      if (Array.isArray(res.data) && res.data.length > 0) {
+        setItems(res.data);
+      }
+    } catch (e) {
+      console.error("Error cargando productos:", e);
+    }
+  };
+
+  load();
+}, []);
+
 
   return (
     <main style={{ marginTop: "90px" }}>
@@ -25,7 +46,7 @@ export default function Products() {
 
 
       <section className="products-grid">
-        {products.map((p) => (
+        {items.map((p) => (
           <div
             className="product-card"
             key={p.id}
