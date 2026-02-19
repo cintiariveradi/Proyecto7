@@ -4,14 +4,22 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./styles/index.css";
 import { CartProvider } from "./context/CartContext";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
+
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <CartProvider>
+  <BrowserRouter>
+    <CartProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
-      </CartProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+      </ThemeProvider>
+    </CartProvider>
+  </BrowserRouter>
+</React.StrictMode>
+
 );

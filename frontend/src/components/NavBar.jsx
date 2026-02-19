@@ -1,7 +1,14 @@
 import logo from "../assets/faviconCintia.png";
 import { Link } from "react-router-dom";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useCart } from "../context/CartContext";
+
+
 
 export default function Navbar() {
+  const { items } = useCart();
+const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
+
   return (
     <nav>
       {/* Logo */}
@@ -29,7 +36,35 @@ export default function Navbar() {
       <div className="navbar-actions">
         <Link className="navbar-action" to="/registro">Registro</Link>
         <Link className="navbar-action" to="/login">Login</Link>
-        <Link className="navbar-action" to="/carrito">Carrito</Link>
+        <Link
+          className="navbar-action"
+          to="/carrito"
+          style={{ position: "relative", display: "flex", alignItems: "center" }}
+        >
+          <ShoppingCartOutlinedIcon />
+          {cartCount > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-6px",
+                right: "-10px",
+                background: "var(--secondary-color-500)",
+                color: "white",
+                fontSize: ".75rem",
+                fontWeight: "800",
+                width: "20px",
+                height: "20px",
+                borderRadius: "999px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                lineHeight: 1,
+              }}
+    >
+      {cartCount}
+    </span>
+  )}
+</Link>
 
       </div>
     </nav>

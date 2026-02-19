@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 
 export default function Registro() {
   const [form, setForm] = useState({
@@ -17,87 +18,129 @@ export default function Registro() {
   };
 
   return (
-    <main style={{ marginTop: "90px" }}>
-      <div
-        style={{
+    <main style={{ marginTop: "90px", display: "flex", justifyContent: "center" }}>
+      <Paper
+        elevation={0}
+        sx={{
           width: "90%",
-          maxWidth: "650px",
-
-          margin: "3rem auto",
-          background: "#fff",
-          padding: "3.5rem",
+          maxWidth: 650,
+          mt: 6,
+          p: 5,
           borderRadius: "24px",
+          backgroundColor: "rgba(255,255,255,0.9)",
+          border: "1px solid rgba(0,0,0,0.06)",
           boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
+          color: "text.primary",
+          fontFamily: "var(--body-font)",
         }}
       >
-        <h1 style={{ marginBottom: "1.5rem" }}>Crear cuenta</h1>
-
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.2rem",
-          }}
+        <Typography
+          variant="h4"
+          fontWeight={800}
+          sx={{ color: "primary.main", mb: 3 }}
         >
-          <input
+          Crear cuenta
+        </Typography>
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+        >
+          <TextField
+            label="Nombre"
             type="text"
             name="name"
-            placeholder="Nombre"
             value={form.name}
             onChange={handleChange}
-            required
-            style={{
-              padding: "0.8rem",
-              borderRadius: "12px",
-              border: "1px solid #ddd",
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{ sx: { color: "text.primary" } }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "14px",
+                backgroundColor: "#fff",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.15)",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.25)",
+              },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "primary.main",
+              },
             }}
           />
 
-          <input
+          <TextField
+            label="Correo electrónico"
             type="email"
             name="email"
-            placeholder="Correo electrónico"
             value={form.email}
             onChange={handleChange}
-            required
-            style={{
-              padding: "0.8rem",
-              borderRadius: "12px",
-              border: "1px solid #ddd",
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{ sx: { color: "text.primary" } }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "14px",
+                backgroundColor: "#fff",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.15)",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.25)",
+              },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "primary.main",
+              },
             }}
           />
 
-          <input
+          <TextField
+            label="Contraseña"
             type="password"
             name="password"
-            placeholder="Contraseña"
             value={form.password}
             onChange={handleChange}
-            required
-            style={{
-              padding: "0.8rem",
-              borderRadius: "12px",
-              border: "1px solid #ddd",
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{ sx: { color: "text.primary" } }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "14px",
+                backgroundColor: "#fff",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.15)",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(0,0,0,0.25)",
+              },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "primary.main",
+              },
             }}
           />
 
-          <button
+          <Button
             type="submit"
-            style={{
-              padding: "0.9rem",
+            variant="contained"
+            sx={{
+              mt: 1,
+              py: 1.2,
               borderRadius: "14px",
-              background: "var(--secondary-color-500)",
-              color: "white",
-              fontWeight: "bold",
-              border: "none",
-              cursor: "pointer",
+              fontWeight: 800,
+              bgcolor: "primary.main",
+              "&:hover": { bgcolor: "#e46b6b" },
             }}
           >
             Registrarme
-          </button>
-        </form>
-      </div>
+          </Button>
+        </Box>
+      </Paper>
     </main>
   );
 }

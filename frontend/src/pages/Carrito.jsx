@@ -1,4 +1,9 @@
 import { useCart } from "../context/CartContext";
+import { Paper, Button, Typography, Box } from "@mui/material";
+import { Link } from "react-router-dom";
+
+
+
 
 export default function Carrito() {
   const { items, removeFromCart, clearCart } = useCart();
@@ -6,8 +11,9 @@ export default function Carrito() {
   const total = items.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   return (
-    <main style={{ marginTop: "90px", width: "90%", maxWidth: "900px", marginInline: "auto" }}>
-      <h1 style={{ margin: "2rem 0" }}>Carrito</h1>
+    <main style={{ marginTop: "calc(var(--nav-height) + 60px)"
+, width: "90%", maxWidth: "900px", marginInline: "auto" }}>
+
 
       {items.length === 0 ? (
   <div
@@ -42,46 +48,50 @@ export default function Carrito() {
         <>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {items.map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "center",
-                  background: "#fff",
-                  borderRadius: "16px",
-                  padding: "1rem",
-                  boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ width: "90px", height: "90px", objectFit: "contain" }}
-                />
+            <Paper
+  key={item.id}
+  elevation={0}
+  sx={{
+    display: "flex",
+    gap: "1rem",
+    alignItems: "center",
+    p: 2,
+    borderRadius: "16px",
+    background: "#fff",
+    boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
+  }}
+>
+  <img
+    src={item.image}
+    alt={item.name}
+    style={{ width: "90px", height: "90px", objectFit: "contain" }}
+  />
 
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ margin: 0 }}>{item.name}</h3>
-                  <p style={{ margin: ".25rem 0" }}>
-                  ${item.price.toLocaleString("es-CL")} × {item.qty} ={" "}
-                  <strong>${(item.price * item.qty).toLocaleString("es-CL")}</strong>
-                </p>
+  <Box sx={{ flex: 1 }}>
+    <Typography variant="h6" sx={{ m: 0, fontWeight: 800 }}>
+      {item.name}
+    </Typography>
+    <Typography sx={{ mt: 0.5 }}>
+      ${item.price.toLocaleString("es-CL")} × {item.qty} ={" "}
+      <strong>${(item.price * item.qty).toLocaleString("es-CL")}</strong>
+    </Typography>
+  </Box>
 
-                </div>
+  <Button
+    variant="outlined"
+    onClick={() => removeFromCart(item.id)}
+    sx={{
+      borderRadius: "12px",
+      fontWeight: 800,
+      borderColor: "rgba(0,0,0,0.2)",
+      color: "text.primary",
+      "&:hover": { borderColor: "primary.main" },
+    }}
+  >
+    Quitar
+  </Button>
+</Paper>
 
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  style={{
-                    padding: ".6rem 1rem",
-                    borderRadius: "12px",
-                    border: "1px solid #ddd",
-                    background: "white",
-                    cursor: "pointer",
-                  }}
-                >
-                  Quitar
-                </button>
-              </div>
             ))}
           </div>
 
@@ -107,21 +117,22 @@ export default function Carrito() {
               Vaciar carrito
             </button>
 
-            <button
-              type="button"
-              style={{
-                padding: ".9rem 1.2rem",
-                borderRadius: "14px",
-                border: "none",
-                background: "var(--secondary-color-500)",
-                color: "white",
-                cursor: "pointer",
-                fontWeight: 800,
-                flex: 1,
-              }}
-            >
-              Ir a pagar
-            </button>
+           <Link to="/checkout" style={{ flex: 1, textDecoration: "none" }}>
+  <Button
+    variant="contained"
+    fullWidth
+    sx={{
+      py: 1.2,
+      borderRadius: "14px",
+      fontWeight: 800,
+      bgcolor: "primary.main",
+      "&:hover": { bgcolor: "#e46b6b" },
+    }}
+  >
+    Ir a pagar
+  </Button>
+</Link>
+
           </div>
         </>
       )}
