@@ -4,18 +4,26 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 
 
 
 dotenv.config();
+console.log("STRIPE_SECRET_KEY existe?", Boolean(process.env.STRIPE_SECRET_KEY));
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
+app.use("/api/payments", paymentRoutes);
 
 
 

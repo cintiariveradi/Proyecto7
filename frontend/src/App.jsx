@@ -7,6 +7,7 @@ import ProductDetail from "./pages/ProductDetail.jsx";
 import Registro from "./pages/Registro.jsx";
 import Login from "./pages/Login.jsx";
 import Carrito from "./pages/Carrito.jsx";
+import RequireAuth from "./auth/RequireAuth";
 
 
 
@@ -22,11 +23,14 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/checkout" element={<Checkout />} />
-
-
-
-
+        <Route
+        path="/checkout"
+        element={
+          <RequireAuth>
+            <Checkout />
+          </RequireAuth>
+        }
+      />
       </Routes>
     </>
   );

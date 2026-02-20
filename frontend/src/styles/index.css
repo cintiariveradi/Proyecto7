@@ -193,7 +193,7 @@ main {
 }
 
 .historia ol li:before { 
-  content: "âœ¦"; 
+  content: "✦";
   position:absolute; 
   left:0; 
   color:var(--secondary-color-500); 
