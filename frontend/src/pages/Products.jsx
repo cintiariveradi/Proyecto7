@@ -15,9 +15,14 @@ useEffect(() => {
   const load = async () => {
     try {
       const res = await api.get("/api/product/readall");
-      if (Array.isArray(res.data) && res.data.length > 0) {
-        setItems(res.data);
-      }
+      if (Array.isArray(res.data) && res.data.length >= fallbackProducts.length) {
+  setItems(
+    res.data.map((p) => ({
+      ...p,
+      id: p.id || p._id,
+    }))
+  );
+}
     } catch (e) {
       console.error("Error cargando productos:", e);
     }
@@ -49,8 +54,8 @@ useEffect(() => {
         {items.map((p) => (
           <div
             className="product-card"
-            key={p.id}
-            onClick={() => navigate(`/products/${p.id}`)}
+            key={p._id || p.id}
+            onClick={() => navigate(`/products/${p._id || p.id}`)}
             style={{ cursor: "pointer" }}
           >
                         <img

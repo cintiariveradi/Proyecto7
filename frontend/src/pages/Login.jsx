@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Box, TextField, Button, Typography, Paper } from "@mui/material";
+import { api } from "../api/apiClient";
+import { setToken } from "../auth/token";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
@@ -7,15 +10,24 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Datos de login:", form);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await api.post("/api/auth/login", form);
+    setToken(res.data.token);
+    navigate("/"); // vuelve al home
+  } catch (error) {
+    alert("Credenciales incorrectas");
+  }
+};
+  
 
   return (
     <main style={{ marginTop: "90px", display: "flex", justifyContent: "center" }}>

@@ -159,7 +159,7 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <Link to="/products/1">
+      <Link to="/products/step-1">
   <img
     className="card-img"
     src={step1Img}
@@ -184,7 +184,7 @@ useEffect(() => {
     </div>
 
 <div className="card-body">
-      <Link to="/products/2">
+      <Link to="/products/step-2">
   <img
     className="card-img"
     src={step2Img}
@@ -208,7 +208,7 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <Link to="/products/3">
+      <Link to="/products/step-3">
   <img
     className="card-img"
     src={step3Img}
@@ -232,7 +232,7 @@ useEffect(() => {
     </div>
 
   <div className="card-body">
-      <Link to="/products/4">
+      <Link to="/products/step-4">
   <img
     className="card-img"
     src={step4Img}
@@ -257,7 +257,7 @@ useEffect(() => {
     </div>
 
     <div className="card-body">
-      <Link to="/products/5">
+      <Link to="/products/step-5">
   <img
     className="card-img"
     src={step5Img}

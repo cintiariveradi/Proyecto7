@@ -14,7 +14,7 @@ export const createProduct = async (req, res) => {
 
 export const readAllProducts = async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const products = await Product.find().sort({ step: 1 });
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: "Error leyendo productos" });
@@ -50,5 +50,15 @@ export const deleteProduct = async (req, res) => {
     res.json({ message: "Producto eliminado" });
   } catch (error) {
     res.status(500).json({ message: "Error eliminando producto" });
+  }
+};
+export const readByStep = async (req, res) => {
+  try {
+    const step = Number(req.params.step);
+    const product = await Product.findOne({ step });
+    if (!product) return res.status(404).json({ message: "No encontrado" });
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: "Error leyendo producto" });
   }
 };
