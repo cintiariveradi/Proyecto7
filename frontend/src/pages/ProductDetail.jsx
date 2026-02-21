@@ -14,24 +14,27 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        const isStep = String(id).startsWith("step-");
-const endpoint = isStep
-  ? `/api/product/readbystep/${id.replace("step-", "")}`
-  : `/api/product/readone/${id}`;
+  const load = async () => {
+    setLoading(true);
+    try {
+      const raw = String(id);
+      const isStep = raw.startsWith("step-");
 
-const res = await api.get(endpoint);
-        setProduct(res.data);
-      } catch {
-        setProduct(null);
-      } finally {
-        setLoading(false);
-      }
-    };
+      const endpoint = isStep
+        ? `/api/product/readbystep/${raw.replace("step-", "")}`
+        : `/api/product/readone/${raw}`;
 
-    load();
-  }, [id]);
+      const res = await api.get(endpoint);
+      setProduct(res.data);
+    } catch (e) {
+      setProduct(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  load();
+}, [id]);
 
   if (loading) {
     return (
