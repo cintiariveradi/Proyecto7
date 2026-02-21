@@ -129,7 +129,7 @@ https://proyecto7-phez.onrender.com/api/docs
 - STRIPE_SECRET_KEY=TuClaveStripeTest
 - FRONTEND_URL=http://localhost:5173
 
-###Ejecutar:
+### Ejecutar:
 - npm run dev
 
 ### 3) Frontend
@@ -138,7 +138,7 @@ https://proyecto7-phez.onrender.com/api/docs
 - Crear archivo .env:
 - VITE_API_URL=http://localhost:4000
 
-###Ejecutar:
+### Ejecutar:
 - npm run dev
 
 ### Scripts disponibles
