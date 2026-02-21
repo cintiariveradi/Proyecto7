@@ -1,13 +1,20 @@
 import logo from "../assets/faviconCintia.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useCart } from "../context/CartContext";
-
-
+import { getToken, clearToken } from "../auth/token";
 
 export default function Navbar() {
   const { items } = useCart();
-const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
+  const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
+
+  const navigate = useNavigate();
+  const token = getToken();
+
+  const handleLogout = () => {
+    clearToken();
+    navigate("/", { replace: true });
+  };
 
   return (
     <nav>
@@ -34,8 +41,20 @@ const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
 
       {/* Acciones derecha */}
       <div className="navbar-actions">
-        <Link className="navbar-action" to="/registro">Registro</Link>
-        <Link className="navbar-action" to="/login">Login</Link>
+        {!token ? (
+          <>
+            <Link className="navbar-action" to="/registro">Registro</Link>
+            <Link className="navbar-action" to="/login">Login</Link>
+          </>
+        ) : (
+          <>
+            <Link className="navbar-action" to="/perfil">Mi perfil</Link>
+            <span className="navbar-action" role="button" tabIndex={0} onClick={handleLogout}>
+              Cerrar sesión
+            </span>
+          </>
+        )}
+
         <Link
           className="navbar-action"
           to="/carrito"
@@ -60,12 +79,11 @@ const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
                 justifyContent: "center",
                 lineHeight: 1,
               }}
-    >
-      {cartCount}
-    </span>
-  )}
-</Link>
-
+            >
+              {cartCount}
+            </span>
+          )}
+        </Link>
       </div>
     </nav>
   );
