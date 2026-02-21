@@ -1,9 +1,15 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Paper, Typography, Box, Button } from "@mui/material";
+import { useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 export default function CheckoutSuccess() {
-  const [params] = useSearchParams();
-  const sessionId = params.get("session_id");
+  const { clearCart } = useCart();
+
+        useEffect(() => {
+          clearCart();
+        }, [clearCart]);
+
 
   return (
     <main style={{ marginTop: "calc(var(--nav-height) + 60px)", display: "flex", justifyContent: "center" }}>

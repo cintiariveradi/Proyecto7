@@ -29,7 +29,7 @@ useEffect(() => {
 }, [location]);
 
   return (
-    <main style={{ marginTop: "90px" }}>
+    <main style={{ marginTop: "var(--nav-height)" }}>
       <header
   id="home"
   style={{

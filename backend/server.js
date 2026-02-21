@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import swaggerUi from "swagger-ui-express";
+import specs from "./swagger.js";
 
 
 
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 
 

@@ -55,7 +55,21 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Error en el login" });
   }
 };
-export const verifyToken = async (req, res) => {
-  return res.json({ ok: true, userId: req.userId });
-};
 
+export const verifyToken = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("name email");
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    return res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Error verificando token" });
+  }
+};

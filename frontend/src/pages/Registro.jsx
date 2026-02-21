@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Box, TextField, Button, Typography, Paper } from "@mui/material";
+import { api } from "../api/apiClient";
+import { setToken } from "../auth/token";
+import { useNavigate } from "react-router-dom";
 
 export default function Registro() {
   const [form, setForm] = useState({
@@ -8,13 +11,40 @@ export default function Registro() {
     password: "",
   });
 
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos de registro:", form);
+    try {
+      setLoading(true);
+
+      const res = await api.post("/api/auth/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      });
+
+      // Si backend devuelve token al registrar, lo guardamos
+      const token = res.data.token || res.data.accessToken;
+
+      if (token) {
+        setToken(token);
+        navigate("/products", { replace: true });
+      } else {
+        // Si backend NO devuelve token, mandamos a login
+        alert("Cuenta creada ✅ Ahora inicia sesión.");
+        navigate("/login", { replace: true });
+      }
+    } catch (error) {
+      alert(error?.response?.data?.message || "No se pudo crear la cuenta.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,19 +64,11 @@ export default function Registro() {
           fontFamily: "var(--body-font)",
         }}
       >
-        <Typography
-          variant="h4"
-          fontWeight={800}
-          sx={{ color: "primary.main", mb: 3 }}
-        >
+        <Typography variant="h4" fontWeight={800} sx={{ color: "primary.main", mb: 3 }}>
           Crear cuenta
         </Typography>
 
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-        >
+        <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
             label="Nombre"
             type="text"
@@ -57,19 +79,10 @@ export default function Registro() {
             variant="outlined"
             InputLabelProps={{ sx: { color: "text.primary" } }}
             sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "14px",
-                backgroundColor: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.15)",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.25)",
-              },
-              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "primary.main",
-              },
+              "& .MuiOutlinedInput-root": { borderRadius: "14px", backgroundColor: "#fff" },
+              "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.15)" },
+              "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.25)" },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "primary.main" },
             }}
           />
 
@@ -83,19 +96,10 @@ export default function Registro() {
             variant="outlined"
             InputLabelProps={{ sx: { color: "text.primary" } }}
             sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "14px",
-                backgroundColor: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.15)",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.25)",
-              },
-              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "primary.main",
-              },
+              "& .MuiOutlinedInput-root": { borderRadius: "14px", backgroundColor: "#fff" },
+              "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.15)" },
+              "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.25)" },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "primary.main" },
             }}
           />
 
@@ -109,25 +113,17 @@ export default function Registro() {
             variant="outlined"
             InputLabelProps={{ sx: { color: "text.primary" } }}
             sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "14px",
-                backgroundColor: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.15)",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "rgba(0,0,0,0.25)",
-              },
-              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "primary.main",
-              },
+              "& .MuiOutlinedInput-root": { borderRadius: "14px", backgroundColor: "#fff" },
+              "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.15)" },
+              "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(0,0,0,0.25)" },
+              "& .Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "primary.main" },
             }}
           />
 
           <Button
             type="submit"
             variant="contained"
+            disabled={loading}
             sx={{
               mt: 1,
               py: 1.2,
@@ -137,7 +133,7 @@ export default function Registro() {
               "&:hover": { bgcolor: "#e46b6b" },
             }}
           >
-            Registrarme
+            {loading ? "Creando cuenta..." : "Registrarme"}
           </Button>
         </Box>
       </Paper>
