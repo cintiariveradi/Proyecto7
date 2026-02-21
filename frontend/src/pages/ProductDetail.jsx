@@ -22,7 +22,6 @@ const endpoint = isStep
   : `/api/product/readone/${id}`;
 
 const res = await api.get(endpoint);
-setProduct(res.data);
         setProduct(res.data);
       } catch {
         setProduct(null);
