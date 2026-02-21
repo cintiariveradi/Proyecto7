@@ -113,43 +113,43 @@ https://proyecto7-phez.onrender.com/api/docs
 ### 1) Clonar repositorio
 
 
-git clone <URL_DEL_REPOSITORIO>
-cd Proyecto7
+- git clone <https://github.com/cintiariveradi/Proyecto7>
+- cd Proyecto7
 
 
 ### 2) Backend
 
-cd backend
-npm install
+- cd backend
+- npm install
 
-Crear archivo .env:
-PORT=4000
-MONGO_URI=mongodb://127.0.0.1:27017/5stepsonly
-JWT_SECRET=TuSecretoSeguro
-STRIPE_SECRET_KEY=TuClaveStripeTest
-FRONTEND_URL=http://localhost:5173
+- Crear archivo .env:
+- PORT=4000
+- MONGO_URI=mongodb://127.0.0.1:27017/5stepsonly
+- JWT_SECRET=TuSecretoSeguro
+- STRIPE_SECRET_KEY=TuClaveStripeTest
+- FRONTEND_URL=http://localhost:5173
 
-Ejecutar:
-npm run dev
+###Ejecutar:
+- npm run dev
 
 ### 3) Frontend
-cd frontend
-npm install
-Crear archivo .env:
-VITE_API_URL=http://localhost:4000
+- cd frontend
+- npm install
+- Crear archivo .env:
+- VITE_API_URL=http://localhost:4000
 
-Ejecutar:
-npm run dev
+###Ejecutar:
+- npm run dev
 
 ### Scripts disponibles
 
-Backend
-npm run dev
-npm start
-Frontend
-npm run dev
-npm run build
-npm run preview
+Backend:
+- npm run dev
+- npm start
+Frontend:
+- npm run dev
+- npm run build
+- npm run preview
 
 ---
 
@@ -183,7 +183,8 @@ npm run preview
 ---
 
 ## Estructura del proyecto
-```Proyecto7/
+```
+Proyecto7/
 ├── backend/
 │   ├── controllers/
 │   │   ├── authController.js
