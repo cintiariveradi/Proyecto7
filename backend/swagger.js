@@ -9,12 +9,19 @@ const options = {
       description: "Documentación de la API del eCommerce 5 Steps Only",
     },
     servers: [
-  {
-    url: `http://localhost:${process.env.PORT || 4000}`,
+      { url: process.env.API_URL || "http://localhost:4000" },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
-],
-  },
-  apis: ["./routes/*.js"], 
+  apis: ["./routes/*.js"],
 };
 
 const specs = swaggerJSDoc(options);
