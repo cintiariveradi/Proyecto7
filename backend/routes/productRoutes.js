@@ -24,7 +24,45 @@ const router = Router();
  */
 
 router.get("/readall", readAllProducts);
+/**
+ * @openapi
+ * /api/product/readbystep/{step}:
+ *   get:
+ *     summary: Obtener un producto por número de paso
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - in: path
+ *         name: step
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Producto encontrado
+ *       404:
+ *         description: No encontrado
+ */
 router.get("/readbystep/:step", readByStep);
+/**
+ * @openapi
+ * /api/product/readone/{id}:
+ *   get:
+ *     summary: Obtener un producto por ID
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Producto encontrado
+ *       404:
+ *         description: No encontrado
+ */
 router.get("/readone/:id", readOneProduct);
 
 /**
@@ -56,7 +94,59 @@ router.get("/readone/:id", readOneProduct);
  *         description: No autorizado
  */
 router.post("/create", requireAuth, createProduct);
+/**
+ * @openapi
+ * /api/product/update/{id}:
+ *   put:
+ *     summary: Actualizar un producto (requiere token)
+ *     tags:
+ *       - Products
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Producto actualizado
+ *       401:
+ *         description: No autorizado
+ *       404:
+ *         description: No encontrado
+ */
 router.put("/update/:id", requireAuth, updateProduct);
+/**
+ * @openapi
+ * /api/product/delete/{id}:
+ *   delete:
+ *     summary: Eliminar un producto (requiere token)
+ *     tags:
+ *       - Products
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Producto eliminado
+ *       401:
+ *         description: No autorizado
+ *       404:
+ *         description: No encontrado
+ */
 router.delete("/delete/:id", requireAuth, deleteProduct);
 
 
